@@ -1,8 +1,16 @@
 <template>
   <div class="container">
-    <h1>hello</h1>
+    <Header></Header>
+    <div class="row">
+      <div class="col-xs-12">
+        <router-view></router-view>
+      </div>
+    </div>
   </div>
 </template>
 <script>
-export default {};
+import Header from "./components/Header";
+export default {
+  components: { Header }
+};
 </script>
