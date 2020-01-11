@@ -1,8 +1,9 @@
 <template>
-  <div class="container">
-    <h1>hello</h1>
-  </div>
+  <h1>Home</h1>
 </template>
+
 <script>
 export default {};
 </script>
+
+<style></style>
