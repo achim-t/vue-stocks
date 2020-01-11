@@ -13,15 +13,18 @@
             class="form-control"
             placeholder="Quantity"
             v-model="quantity"
+            :class="{ danger: insufficientFunds }"
           />
         </div>
         <div class="pull-right">
           <button
             class="btn btn-success"
             @click="buyStock"
-            :disabled="quantity <= 0 || Number.isInteger(quantity)"
+            :disabled="
+              insufficientFunds || quantity <= 0 || Number.isInteger(quantity)
+            "
           >
-            Buy
+            {{ insufficientFunds ? "Money missing" : "Buy" }}
           </button>
         </div>
       </div>
@@ -37,6 +40,14 @@ export default {
       quantity: 0
     };
   },
+  computed: {
+    funds() {
+      return this.$store.getters.funds;
+    },
+    insufficientFunds() {
+      return this.quantity * this.stock.price > this.funds;
+    }
+  },
   methods: {
     buyStock() {
       const order = {
@@ -45,10 +56,15 @@ export default {
         quantity: this.quantity
       };
       console.log(order); //eslint-disable-line
+      this.$store.dispatch("buyStock", order);
       this.quantity = 0;
     }
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+.danger {
+  border: 1px solid red;
+}
+</style>
