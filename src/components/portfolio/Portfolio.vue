@@ -3,7 +3,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    stocks() {
+      return this.$store.getters.stockPortfolio;
+    }
+  }
+};
 </script>
 
 <style></style>
