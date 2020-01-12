@@ -4,7 +4,7 @@
     <h6>Save & Load</h6>
     <h6>Click on 'End Day'</h6>
     <hr />
-    <p>Your Funds: {{ funds }}</p>
+    <p>Your Funds: {{ funds | currency }}</p>
   </div>
 </template>
 
